@@ -10,22 +10,22 @@ package src.game
 	public class GameWheel extends Sprite implements iCanStartAndStop
 	{
 		[Embed(source = "/assets/img/wheel.png")]
-		private static var WheelImgClass:Class;
-		private var _wheel:Sprite = new Sprite();
+		private static var WheelImgClass: Class;
+		private var _wheel: Sprite = new Sprite();
 		
 		
 		[Embed(source = "/assets/img/arrow.png")]
-		private static var ArrowImgClass:Class;
+		private static var ArrowImgClass: Class;
 		
-		public static  const WHEEL_STOPED:String = "wheelStoped";
-		private static const MAX_SPEED:int = 20;
+		public static  const WHEEL_STOPED: String = "wheelStoped";
+		private static const MAX_SPEED: int = 20;
 		
-		private var _speedRotation:Number = 0;
-		private var _result:uint = 0;
+		private var _speedRotation: Number = 0;
+		private var _result: uint = 0;
 		
-		private static var resultsArray:Vector.<uint>;
+		private static var resultsArray: Vector.<uint>;
 		
-		private static var _animTween:TweenLite;
+		private static var _animTween: TweenLite;
 			
 		public function GameWheel() 
 		{
@@ -38,19 +38,19 @@ package src.game
 			addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
-		private function addWheel():void 
+		private function addWheel(): void 
 		{
-			var wheelImg:Bitmap = new WheelImgClass();
+			var wheelImg: Bitmap = new WheelImgClass();
 			
 			wheelImg.smoothing = true;
-			wheelImg.x = -wheelImg.width/2;
+			wheelImg.x = -wheelImg.width / 2;
 			wheelImg.y = -wheelImg.height / 2;
 			_wheel.rotation = -(360 / resultsArray.length) / 2;
 			
 			_wheel.addChild(wheelImg);
 			addChild(_wheel);
 			
-			var _arrowImg:Bitmap = new ArrowImgClass();
+			var _arrowImg: Bitmap = new ArrowImgClass();
 			_arrowImg.smoothing = true;
 			_arrowImg.rotation = 90;
 			_arrowImg.scaleX = _arrowImg.scaleY = 0.2;
@@ -59,12 +59,12 @@ package src.game
 			addChild(_arrowImg);
 		}
 		
-		private function enterFrameHandler(event:Event):void
+		private function enterFrameHandler(event: Event): void
 		{
 			_wheel.rotation += _speedRotation;
 		}
 		
-		private function smoothSpeedChange(toSpeed:Number, callback=null):void
+		private function smoothSpeedChange(toSpeed: Number, callback = null): void
 		{
 			if (_animTween)
 				_animTween.kill();
@@ -75,28 +75,28 @@ package src.game
 				}, onComplete: callback});
 		}
 		
-		private function stopWheeling():void 
+		private function stopWheeling(): void 
 		{
-			var resultIndex:int = Math.floor(((_wheel.rotation>0)? _wheel.rotation : (360+_wheel.rotation)) / (360 / resultsArray.length));
+			var resultIndex:int = Math.floor(((_wheel.rotation > 0) ? _wheel.rotation : (360 + _wheel.rotation)) / (360 / resultsArray.length));
 			_result = resultsArray[resultIndex];
 			
 			dispatchEvent(new Event(WHEEL_STOPED));
 		}
 		
-		public function get result():uint
+		public function get result(): uint
 		{
 			return _result;
 		}
 		
 		/* INTERFACE src.ui.iCanStartAndStop */
 		
-		public function start()
+		public function start(): void
 		{
 			if(!_speedRotation)
 				smoothSpeedChange(MAX_SPEED);
 		}
 		
-		public function stop()
+		public function stop(): void
 		{
 			if(_speedRotation)
 				smoothSpeedChange(0, stopWheeling);

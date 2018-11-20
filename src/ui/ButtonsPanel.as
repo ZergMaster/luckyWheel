@@ -5,34 +5,34 @@ package src.ui
 	public class ButtonsPanel extends Sprite
 	{
 		
-		private var _controlledElement:iCanStartAndStop;
+		private var _controlledElement: iCanStartAndStop;
 		
-		public function ButtonsPanel(controlledElement:iCanStartAndStop)
+		public function ButtonsPanel(controlledElement: iCanStartAndStop)
 		{
 			_controlledElement = controlledElement;
 			
-			addBssuttons();
+			addButtons();
 		}
 		
-		private function addBssuttons():void 
+		private function addButtons():void 
 		{
-			var buttonsGap:uint = 20;
+			var buttonsGap: uint = 20;
 			
-			var butStart:GameButton = new GameButton('start', startHandler);
+			var butStart GameButton = new GameButton('start', startHandler);
 			addChild(butStart);
 			
-			var butStop:GameButton = new GameButton('stop', stopHandler);
+			var butStop: GameButton = new GameButton('stop', stopHandler);
 			addChild(butStop);
 			
 			butStop.x = butStart.x + butStart.width + buttonsGap;
 		}
 		
-		private function startHandler(event:MouseEvent):void 
+		private function startHandler(event: MouseEvent):void 
 		{
 			_controlledElement.start();
 		}
 		
-		private function stopHandler(event:MouseEvent):void 
+		private function stopHandler(event: MouseEvent):void 
 		{
 			_controlledElement.stop();
 		}

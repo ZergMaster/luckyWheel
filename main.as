@@ -16,7 +16,7 @@
 		
 		public function main() 
 		{
-			InfoWindow.instanse.init(this);
+			InfoWindow.instanсe.init(this);
 			
 			_gameWheel = new GameWheel();
 			_buttons = new ButtonsPanel(_gameWheel);
@@ -28,7 +28,7 @@
 		
 		private function wheelStopedHandler(event:Event):void 
 		{
-			InfoWindow.instanse.addMessage(' Result is ' + String(_gameWheel.result));
+			InfoWindow.instanсe.addMessage(' Result is ' + String(_gameWheel.result));
 		}
 		
 		private function addThisHandler(event:Event):void

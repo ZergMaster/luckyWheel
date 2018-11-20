@@ -8,12 +8,12 @@ package src.ui
 	import flash.text.TextFormatAlign;
 	public class InfoWindow 
 	{
-		private static var _instance:InfoWindow;
-		private static var _isConstructing:Boolean;
+		private static var _instance: InfoWindow;
+		private static var _isConstructing: Boolean;
 		
-		private var _bg:Sprite;
-		private var _tf:TextField;
-		private var _mc:MovieClip;
+		private var _bg: Sprite;
+		private var _tf: TextField;
+		private var _mc: MovieClip;
 		
 		public function InfoWindow() 
 		{
@@ -28,14 +28,14 @@ package src.ui
 			_bg = new Sprite();
 		}
 		
-		public function init(mc:MovieClip):void 
+		public function init(mc:MovieClip): void 
 		{
 			_mc = mc;
 			
 			_bg.addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-		private function clickHandler(event:MouseEvent):void 
+		private function clickHandler(event: MouseEvent): void 
 		{
 			_tf.text = '';
 			_mc.removeChild(_tf);
@@ -44,7 +44,7 @@ package src.ui
 			_mc.removeChild(_bg);
 		}
 		
-		public function addMessage(message:String):void 
+		public function addMessage(message: String): void 
 		{
 			if (!_mc)
 				throw new Error('You need make init function');
@@ -59,7 +59,7 @@ package src.ui
 			_mc.addChild(_tf);
 		}
 		
-		public static function get instanse():InfoWindow {
+		public static function get instance(): InfoWindow {
 			if (_instance == null)  
 			{
 				_isConstructing = true;
