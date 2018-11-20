@@ -11,8 +11,8 @@
 	
 	public class main extends MovieClip 
 	{		
-		private var _buttons:ButtonsPanel;
-		private var _gameWheel:GameWheel
+		private var _buttons: ButtonsPanel;
+		private var _gameWheel: GameWheel
 		
 		public function main() 
 		{
@@ -26,12 +26,12 @@
 			_gameWheel.addEventListener(GameWheel.WHEEL_STOPED, wheelStopedHandler);
 		}
 		
-		private function wheelStopedHandler(event:Event):void 
+		private function wheelStopedHandler(event:Event): void 
 		{
 			InfoWindow.instanсe.addMessage(' Result is ' + String(_gameWheel.result));
 		}
 		
-		private function addThisHandler(event:Event):void
+		private function addThisHandler(event:Event): void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, addThisHandler);
 			
